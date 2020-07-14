@@ -1,10 +1,10 @@
 import mysql.connector
-
+#Database tuts
 #creating the database connection
 mydb = mysql.connector.connect(
         host="localhost",
         user='main',
-        password="akhil2003",
+        password=" failed to push some refs ",
         database="bank"
     )
 
