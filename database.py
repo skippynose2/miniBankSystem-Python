@@ -4,7 +4,7 @@ import mysql.connector
 mydb = mysql.connector.connect(
         host="localhost",
         user='main',
-        password=" failed to push some refs ",
+        password="FNkFngOW4fCFGKhi",
         database="bank"
     )
 
