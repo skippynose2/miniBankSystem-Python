@@ -2,20 +2,38 @@ from appJar import gui
 import ATM as ATM
 app = gui()
 
-
-
 #Input Feilds
 app.startSubWindow("Login")
 app.addLabelEntry("User Name")
 app.addLabelSecretEntry("Password")
 
+def Dep(btn):
+    if btn == "Deposit":
+        amount = app.getEntry("Amount")
+        session = ATM.Control(app.getEntry("User Name"))
+        session.Login(app.getEntry("Password"))
+        session = ATM.Accounts(app.getEntry("User Name"))
+        session.Deposit(float(amount))
+        app.clearEntry("Amount")
+    elif btn= "Withdraw":
+        print("Withdraw function")
+    else:
+        app.stop()
+    '''
+    session = ATM.Control(app.getEntry("User Name"))
+    session.Login(app.getEntry("Password"))
+    session = ATM.Accounts(app.getEntry("User Name"))
+    session.Deposit(x)
+    '''
 
+    
 def Manager():
-    app.startSubWindow("Demo")
+    app.startSubWindow("Account")
     app.addLabel("l1", "Press the button to close this window")
     # set the button's name to match the SubWindow's name
-    app.addNamedButton("CLOSE", "Demo", app.hideSubWindow)
-    app.showSubWindow("Demo", hide=True)
+    app.addLabelEntry("Amount")
+    app.addButtons(["Deposit", "Withdraw", "Close"], Dep)
+    app.showSubWindow("Account", hide=True)
 
 def LoginBtn(button):
     if button == "Cancel":
@@ -32,5 +50,3 @@ def LoginBtn(button):
 
 app.addButtons(["Submit", "Cancel"], LoginBtn)
 app.go(startWindow="Login")
-
-
