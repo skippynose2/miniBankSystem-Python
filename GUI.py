@@ -60,6 +60,8 @@ def LoginBtn(button):
             Manager()
         elif session.Login(pwd) == 2:
            app.addLabel("Wrong Password")
+           app.clearLabel("User Name")
+           app.clearLabel("Password")
            ReTry()       
         else:
             print('WTF')
