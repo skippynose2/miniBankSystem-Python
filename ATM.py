@@ -5,16 +5,6 @@ from productionDB import *
 print("From ATM.PY")
 print(CDB.db)
 print("FROM ATM")
-'''one correct Procedure to do it
-sql = "UPDATE ACCOUNTS SET AMOUNT = 5000 WHERE NAME='John'"
-CDB.cursor.execute(sql)
-CDB.db.commit()
-'''
-#This works too and it works better
-'''CDB.Add("Akhil", 20000)
-results = CDB.Fetch('Akhil')
-CDB.NewAccount("Test", "TEST")
-'''
 
 class Control:
   Logged = False
@@ -25,12 +15,7 @@ class Control:
     self.NoAccountBroadCast = 3
     self.NotEnoughBroadCast = 4
     
-  def SignUp(self):
-    userName = input("Your username")
-    password = input("Your password")
-    CDB.NewAccount(userName, password)
-    self.Login(password)
-    Control.Logged = True
+
 
   def Login(self, passwordGiven):
     results = CDB.Fetch(self.userName)
@@ -45,6 +30,7 @@ class Control:
     else:
       print("does not exsit")
       self.SignUp()
+
   def SignOut(self):
     Control.Logged = False
     print("Signed out")
@@ -68,34 +54,7 @@ class Accounts(Control):
       else:
         return self.NotEnoughBroadCast
         
+def SignUp(userName, password):
+  CDB.NewAccount(userName, password)
 
-
-
-#Find way to actually allow user to interact with system
-'''
-Initil = False
-while 1 == 1:
-  while Initil == False:
-    UserName = input("User Name")
-    Password = input("Password")
-    session = Control(UserName)
-    session.Login(Password)
-    Initil = True
-  session = Accounts(UserName)
-  Actions = input("Type W to Withdraw funds and D to deposit funds")
-  if Actions in ["d", "D"]:
-    amount = int(input("How much do you want to deposit"))
-    session.Deposit(amount)
-  if Actions in ["W", 'w']:
-    amount = int(input("How much do you want to Withdraw"))
-    session.WithDraw(amount)
-  if Actions in ['Q', 'q']:
-    session.SignOut()
-    break
-
-session = Control('Akhil')
-session.Login('1234')
-session = Accounts('Akhil')
-session.WithDraw(6000)
-'''
 
