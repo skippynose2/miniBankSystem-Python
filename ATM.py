@@ -20,6 +20,10 @@ class Control:
   Logged = False
   def __init__(self, userName):
     self.userName = userName
+    self.LoggedInBroadCast = 1
+    self.WrongPassword = 2
+    self.NoAccountBroadCast = 3
+    self.NotEnoughBroadCast = 4
     
   def SignUp(self):
     userName = input("Your username")
@@ -34,9 +38,10 @@ class Control:
       if results[0][0] == passwordGiven:
         print("Correct pass")
         Control.Logged = True
-      else:
-        password = input("Incorrect please try again")
-        self.Login(password)
+        return self.LoggedInBroadCast
+      elif results[0][0] != passwordGiven:
+        print("radlkfjlksdjf")
+        return self.WrongPassword
     else:
       print("does not exsit")
       self.SignUp()
@@ -61,12 +66,13 @@ class Accounts(Control):
         newAmount = results[0][1] - amount
         CDB.Add(self.userName, newAmount)
       else:
-        print("Not Enough Funds")
+        return self.NotEnoughBroadCast
         
 
 
 
 #Find way to actually allow user to interact with system
+'''
 Initil = False
 while 1 == 1:
   while Initil == False:
@@ -87,7 +93,7 @@ while 1 == 1:
     session.SignOut()
     break
 
-'''session = Control('Akhil')
+session = Control('Akhil')
 session.Login('1234')
 session = Accounts('Akhil')
 session.WithDraw(6000)
